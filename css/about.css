@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+*{
+  margin:0;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    position: relative; 
+  }
+  .title{
+    margin-bottom: 10px;
+  }
+
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+ 
+  .column {
+    float: left;
+    width: 33.3%;
+    margin: 0; 
+    padding: 0;
+ 
+  }
+
+  .column img {
+    
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  
+  }
+ 
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    position: relative; 
+  }
+  
+  .about-section {
+
+    padding: 20px;
+    text-align: center;
+    background: -webkit-linear-gradient(to right, #e26e53, #97140d);
+	  background: linear-gradient(to right, #7b2921, #9e1919);
+    color: white;
+    margin: 0; 
+  }
+  
+  .container {
+    padding: 0 16px;
+    margin-bottom: 10%;
+  }
+
+/* meter o footer longe do container */ 
+  div.container{
+    margin-bottom: 50px;
+  }
+  
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .title {
+    color: grey;
+  }
+  
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;  /* margem entre o texto debaixo da imagem */   
+    margin-bottom: 20px;
+  }
+  
+  .button:hover {
+    background-color: #555;
+  }
+  
+  h1 {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px; 
+      font-size: 30px;
+  }
+
+
+  @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      display: block;
+    }
+
+
+  }

@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+*{
+  margin: 0; 
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.imagem {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/images/capa.png");
+  min-height: 100%;
+}
+
+.TextoGrande{
+  color: black;
+  font-size: 100px;
+  position: relative;
+  font-weight: 900;
+  font-size: 64px;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  text-shadow: 3px 3px #e37d7d;
+}
+
+.Textomedio{
+  color: black;
+  font-size: 30px;
+  position: relative;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  text-shadow: 2px 2px #e37d7d;
+}
+
+.row-padding:after{
+  content:"";
+  display:table;
+  clear:both
+}
+.box{
+  
+  float:left;
+  width:100%;
+}
+.box1{
+  align-items: center;
+}
+
+@media (min-width:601px){
+  .box{
+  width:24.99999%
+}
+
+.sizeIcon{
+  font-size:64px;
+}
+.alinhaesq{
+  text-align:center;
+}
+.containerCentro{
+  text-align:center;
+}
+
+.containerCentroDriver {
+  text-align: center;
+}
+.textoContainer {
+  font-size: 20px;
+}
+
+.containerDriver{
+  background-color: rgb(228, 228, 228);
+}
+
+.linkimg{
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 3px 13px 3px 13px;
+  color: black;
+  background-color: white;
+  font-size: 15px;
+  position: relative;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 3px 3px 3px 3px #000000;
+  background: rgba(215, 184, 184, 0.5);
+}
+
+.alinhaesq p a:hover{
+  background-color:rgb(133, 38, 25);
+}
+
+

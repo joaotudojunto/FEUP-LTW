@@ -1,0 +1,183 @@
+.mode column
+.headers ON
+
+PRAGMA encoding="UTF-8";
+
+PRAGMA foreign_keys=OFF;
+
+DROP TABLE IF EXISTS Restaurant;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS Dish;
+DROP TABLE IF EXISTS Menu;
+DROP TABLE IF EXISTS Vehicle;
+DROP TABLE IF EXISTS Review;
+DROP TABLE IF EXISTS Notification;
+DROP TABLE IF EXISTS FoodOrder;
+DROP TABLE IF EXISTS OrderMessage;
+DROP TABLE IF EXISTS DishHistory;
+DROP TABLE IF EXISTS RestaurantCategory;
+DROP TABLE IF EXISTS MenuDish;
+DROP TABLE IF EXISTS FavoriteRestaurant;
+DROP TABLE IF EXISTS FavoriteDish;
+
+PRAGMA foreign_keys=ON;
+
+CREATE TABLE Restaurant (
+    idRestaurant INTEGER NOT NULL,
+    name VARCHAR(256) NOT NULL CHECK(name <> ''),
+    classification INTEGER NOT NULL,
+    address VARCHAR(256) NOT NULL CHECK(address <> ''),
+    description VARCHAR(512) NOT NULL CHECK(description <> ''),
+    serviceHours VARCHAR(256) NOT NULL CHECK(serviceHours <> ''),
+    maxPrice INTEGER NOT NULL CHECK (maxPrice > minPrice),
+    minPrice INTEGER NOT NULL CHECK (minPrice < maxPrice),
+    user VARCHAR(256) NOT NULL,
+    menu INTEGER,
+    CONSTRAINT RestaurantPK PRIMARY KEY(idRestaurant),
+    CONSTRAINT RestaurantFKUser FOREIGN KEY(user) REFERENCES User
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT RestaurantFKMenu FOREIGN KEY(menu) REFERENCES Menu
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE User (
+    username VARCHAR(256) NOT NULL CHECK(username <> ''),
+    userType VARCHAR(256) NOT NULL CHECK(userType <> ''),
+    password VARCHAR(256) NOT NULL UNIQUE,
+    name VARCHAR(256) NOT NULL CHECK(name <> ''),
+    phoneNumber VARCHAR(9) NOT NULL UNIQUE,
+    address VARCHAR(256) NOT NULL CHECK(address <> ''),
+    email VARCHAR(256) NOT NULL CHECK(email LIKE "%@%"),
+    description VARCHAR(512) DEFAULT 'Insert...',
+    registeredDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT UserPK PRIMARY KEY(username),
+    CONSTRAINT userType CHECK (userType IN ('owner', 'customer','driver'))
+);
+
+CREATE TABLE Category (
+    idCategory INTEGER NOT NULL,
+    name VARCHAR(256) NOT NULL UNIQUE CHECK(name <> ''),
+    CONSTRAINT CategoryPK PRIMARY KEY(idCategory)
+);
+
+CREATE TABLE Dish (
+    idDish INTEGER NOT NULL,
+    name VARCHAR(256) NOT NULL CHECK(name <> ''),
+    description VARCHAR(512) NOT NULL CHECK(description <> ''),
+    price INTEGER NOT NULL CHECK (price > 0),
+    category INTEGER NOT NULL,
+    CONSTRAINT DishPK PRIMARY KEY(idDish),
+    CONSTRAINT DishFK FOREIGN KEY(category) REFERENCES Category
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Menu (
+    idMenu INTEGER NOT NULL,
+    CONSTRAINT MenuPK PRIMARY KEY(idMenu)
+);
+
+CREATE TABLE Vehicle (
+    idVehicle INTEGER NOT NULL,
+    vehicle VARCHAR(256) NOT NULL UNIQUE CHECK(vehicle <> ''),
+    licensePlate CHAR(8) NOT NULL UNIQUE CHECK(licensePLate <> ''),
+    user VARCHAR(256) NOT NULL,
+    CONSTRAINT VehiclePK PRIMARY KEY(idVehicle),
+    CONSTRAINT VehicleFK FOREIGN KEY(user) REFERENCES User
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Review (
+    idReview INTEGER NOT NULL,
+    postedTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    text VARCHAR(256) NOT NULL,
+    classification INTEGER NOT NULL,
+    user VARCHAR(256) NOT NULL,
+    restaurant INTEGER NOT NULL,
+    CONSTRAINT ReviewPK PRIMARY KEY(idReview),
+    CONSTRAINT ReviewFKUser FOREIGN KEY(user) REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT ReviewFKRestaurant FOREIGN KEY(restaurant) REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Notification (
+    idNotification INTEGER NOT NULL,
+    type VARCHAR(256) NOT NULL CHECK (type <> ''),
+    content VARCHAR(256) NOT NULL CHECK (content <> ''),
+    checked INTEGER NOT NULL DEFAULT 0,
+    user VARCHAR(256) NOT NULL,
+    CONSTRAINT NotificationPK PRIMARY KEY(idNotification),
+    CONSTRAINT NotificationFK FOREIGN KEY(user) REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE
+    );
+
+CREATE TABLE FoodOrder (
+    idFoodOrder INTEGER NOT NULL,
+    state VARCHAR(256) NOT NULL DEFAULT 'delivering',
+    content VARCHAR(256) NOT NULL CHECK (content <> ''),
+    orderDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    user VARCHAR(256) NOT NULL,
+    restaurant INTEGER NOT NULL,
+    CONSTRAINT FoodOrderPk PRIMARY KEY(idFoodOrder),
+    CONSTRAINT FoodOrderFKUser FOREIGN KEY(user) REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FoodOrderFKRestaurant FOREIGN KEY(restaurant) REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT StateCheck CHECK (state in ('delivering', 'delivering','delayed','cancelled'))
+);
+
+CREATE TABLE OrderMessage(
+    idOrderMessage INTEGER NOT NULL,
+    text VARCHAR(256) NOT NULL CHECK(text <> ''),
+    messageDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    foodOrder INTEGER NOT NULL,
+    CONSTRAINT OrderMessagePK PRIMARY KEY(idOrderMessage),
+    CONSTRAINT OrderMessageFK FOREIGN KEY(foodOrder) REFERENCES FoodOrder ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE DishHistory(
+    idDishHistory INTEGER NOT NULL,
+    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    priceHistory INTEGER NOT NULL CHECK (priceHistory > 0),
+    dish INTEGER NOT NULL,
+    CONSTRAINT DishHistoryPK PRIMARY KEY(idDishHistory),
+    CONSTRAINT DishHistoryFK FOREIGN KEY(dish) REFERENCES Dish ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE RestaurantCategory(
+    restaurant INTEGER NOT NULL,
+    category INTEGER NOT NULL,
+    CONSTRAINT RestaurantCategoryPK PRIMARY KEY(restaurant, category),
+    CONSTRAINT RestaurantCategoryFKRestaurant FOREIGN KEY(restaurant) REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT RestaurantCategoryFKCategory FOREIGN KEY(category) REFERENCES Category ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE MenuDish(
+    menu INTEGER NOT NULL,
+    dish INTEGER NOT NULL,
+    CONSTRAINT MenuDishPK PRIMARY KEY(menu, dish),
+    CONSTRAINT MenuDishFKMenu FOREIGN KEY(menu) REFERENCES Menu ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT MenuDishFKDish FOREIGN KEY(dish) REFERENCES Dish ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE FavoriteRestaurant(
+    restaurant INTEGER NOT NULL,
+    user VARCHAR(256) NOT NULL,
+    CONSTRAINT FavoriteRestaurantPK PRIMARY KEY(restaurant,user),
+    CONSTRAINT FavoriteRestaurantFKRestaurant FOREIGN KEY(restaurant) REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FavoriteRestaurantFKUser FOREIGN KEY(user) REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE FavoriteDish(
+    dish INTEGER NOT NULL,
+    user VARCHAR(256) NOT NULL,
+    CONSTRAINT FavoriteDishPK PRIMARY KEY(dish,user),
+    CONSTRAINT FavoriteDishFKDish FOREIGN KEY(dish) REFERENCES Dish ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FavoriteDishFKUser FOREIGN KEY(user) REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Image (
+  idImage INTEGER PRIMARY KEY,
+  title VARCHAR NOT NULL,
+  restaurant INTEGER NOT NULL,
+  --CONSTRAINT ImagePK PRIMARY KEY(idImage),
+  CONSTRAINT ReviewFKRestaurant FOREIGN KEY(restaurant) REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE
+);
+

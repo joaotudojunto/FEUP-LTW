@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+*{
+  margin: 0;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: #eee;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  
+}
+
+/* painel das respostas */ 
+.panel p {
+  margin-top: 10px;
+  font-size: small;
+  font-family: 'Montserrat', sans-serif;
+  height: 30px; 
+}
+
+/* botão click here*/ 
+.faq-section a{
+  color: red;
+  text-decoration: none;
+}
+
+/* Caixa inicial */ 
+.faq-section {
+ 
+  background: -webkit-linear-gradient(to right, #e26e53, #97140d);
+	background: linear-gradient(to right, #7b2921, #9e1919);
+  padding: 10px;
+  text-align: center;
+  color: white;
+  width: 100%; 
+  left: 0px;
+  
+}
+  
+  .active, .accordion:hover {
+    background-color: rgb(200, 200, 205);
+  }
+  
+  .container {
+    left: auto;
+    right: auto;  
+    margin-top: 50px; 
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 16px 16px 16px 30px rgba(0,0,0,0.25), 0 15px 15px rgba(0,0,0,0.22);
+    position: relative;
+    margin-bottom: 50px; 
+    
+    min-height: 500px;
+    text-align: center; 
+  }
+  

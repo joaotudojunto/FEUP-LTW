@@ -1,0 +1,122 @@
+.pfp-container{
+    margin-top:50px;
+    position: relative;
+    margin-left:auto;
+    margin-right:auto;
+    width: 250px;
+    height: 250px;
+}
+
+.pfp-container img{
+    display:block;
+    border-radius: 25px;
+    width: 250px;
+    height: 250px;
+    
+}
+
+.pfp-container .overlay{
+    display:block;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    opacity: 0;
+    border-radius:25px;
+    width: 250px;
+    height: 250px;
+    transition: .5s ease;
+    background: linear-gradient(to right, #7b2921, #9e1919);
+  }
+
+  .pfp-container:hover .overlay {
+    opacity: 1;
+  }
+
+  .pfp-container .overlay .text{
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 16px 32px;
+  }
+
+.profile-name h5{
+    margin-top:20px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 25px;
+    color: #333;
+}
+
+.idButton .profile-edit{
+    display: block;
+    position: absolute;
+    margin-left:auto;
+    margin-right:auto;
+    top:170;
+    right:10;
+}
+
+.profile-edit{
+    border: none;
+    border-radius: 1.5rem;
+    width: auto;
+    padding: 2%;
+    font-weight: 600;
+    color: #7b2921;
+    cursor: pointer;
+    left: 90%;
+   bottom: 70%
+}
+
+.info-container{
+    display:block;
+    margin-top:25px;
+    margin-bottom: 110px;
+}
+
+
+.info-container .row .info label{
+    display: block;
+    line-height: 150%;
+    font-weight: 600;
+    margin-right: 10px;
+    color:  #7b2921;
+}
+
+.info-container .row .info p{
+    text-align: center;
+    font-weight: 600;
+    color: black;
+}
+
+.info-container .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-container .row .favorite {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.favorite{
+    text-align: center;
+}
+
+.favorite p{
+    margin-top: 20px;
+    display: inline-block;
+    padding:10px;
+    font-size: 16px;
+    border-style: solid;
+    border-radius: 15px;
+}

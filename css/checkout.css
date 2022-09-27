@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;  
+  }
+
+  ul{
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+    
+  }
+/* se meter a 100% podemos dar scroll */
+.col-50{
+    width: 50%;
+}
+  
+  .container {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+    0 18px 18px rgba(0,0,0,0.22);
+    
+  }
+  
+  input[type=text] {
+    width: 90%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+
+.expdate {
+    font-size: 24;
+    padding: 12px;
+    border-radius: 2px;
+    margin-bottom: 17px;
+   
+}
+  
+  .icon-container {
+    margin-bottom: 20px;
+    margin-left: 10px;
+    padding: 0px 0;
+    font-size: 35px;
+  }
+  
+  .button {
+    background-color: #FF4B2B;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .btn:hover {
+    background-color: #45a049;
+  }
+  
+  
+  
+  /* Responsive  */
+  @media (max-width: 800px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+    }
+  }

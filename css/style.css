@@ -1,0 +1,257 @@
+* {
+  padding: 0; 
+  margin: 0; 
+}
+
+article {
+  display: block;
+} 
+
+main {
+  grid-area: 3 / 1 / span 1 / span 1;
+  max-width: 2500px;
+  margin: 0 auto;
+  float: none;
+  display: block; 
+}
+
+/* The best restaurants near you */
+.default-title {
+  margin: 1.5em 0 0.5em 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  
+}
+
+#main-page {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "filter restaurant-list";
+  margin-bottom: 25px;
+}
+
+#main-page #filter {
+  grid-area: filter;
+  align-self: flex-start;
+  justify-self: end;
+}
+
+#filter {
+  color: white; 
+  margin: 2em 1em 2em 1em;
+  padding: 1em;
+  background: -webkit-linear-gradient(to right, #e26e53, #97140d);
+	background: linear-gradient(to right, #7b2921, #9e1919);
+  border-radius: 10px;
+  align-self: center;
+  text-align: center;
+  max-width: 20em;
+  height:100em;
+  
+}
+
+
+#filter label {
+  
+  white-space: nowrap;
+  vertical-align: middle;
+  display: block;
+  text-align: center;
+  text-align: start;
+  line-height: 60px;
+  padding-left: 0.5em;
+}
+
+[type="checkbox"]{
+  vertical-align: middle;
+  margin-right:10px;
+}
+
+
+.container {
+  display: block;
+}
+
+.container input {
+  margin-right: -50px;
+  top: 2px;
+}
+
+#filter #filter-search label input{
+  text-align: center;
+  border-radius:25px;
+  height:30px;
+  width:150px;
+  border: 2px solid black;
+}
+
+#filter label h2{
+  text-align: center;
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+
+label {
+  cursor: default;
+}
+
+
+#restaurant-list{
+ padding-top: 0;
+  background-color: grey;
+  --light-color: #f1f1f1;
+
+}
+
+#foodstyle-area label{
+  margin-top:-20px;
+  margin-bottom:10px;
+}
+
+#foodstyle-area label input{
+    margin-top:-20px;
+    margin-bottom:10px;
+}
+
+.restaurant-card {
+  cursor: pointer;
+  position: relative;
+  padding: 1em;
+  height: 250px;
+  width: 250px;
+  perspective: 1000px;
+  margin: auto;
+  transition: .5s ease;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
+
+
+
+.restaurant-card  img {
+  object-fit: contain;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+
+.restaurant-card .restaurant-card-content{
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  padding:0;
+  height: 150px;
+  width: 150px;
+  padding:auto;
+  transition: .5s ease;
+  border-radius: 25px;
+  background: linear-gradient(to right, #7b2921, #9e1919);
+}
+
+.restaurant-card:hover .restaurant-card-content{
+  opacity: 1;
+}
+
+.restaurant-card .restaurant-card-content .text{
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  text-align: center;
+  padding: 16px 32px;
+}
+
+
+.restaurant-card h2 {
+  text-align: center;
+  width:150px;
+}
+
+.restaurant-card-content {
+  position: absolute;
+  padding: 1em;
+  color: var(--main-color);
+}
+
+.restaurant-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 125px;
+  padding-top:50px;
+}
+
+h2 {
+  margin-bottom: 30px; 
+}
+
+#filter h3 {
+  margin: 0.5em 0 0.2em 0;
+}
+
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+#filter article {
+  display: block;
+  margin: 0 auto;
+  color: white;
+}
+
+#filter #foodstyle, #filter #price {
+  text-align: center;
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+
+
+#main-page #restaurant-list {
+    
+    margin: 2em 2em 2em 2em;
+    padding: 3em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+#main-page #restaurant-list {
+ 
+    grid-area: restaurant-list;
+    margin: 2em 2em 2em 2em;
+    padding: 3em 3em;
+    border-radius: 10px;
+    background-color: var(--light-color);
+}
+
+.Rating{
+  margin-bottom: 45px;
+}
+
+input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
+}
